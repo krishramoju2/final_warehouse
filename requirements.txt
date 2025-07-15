@@ -1,0 +1,48 @@
+# FastAPI: A modern, fast (high-performance) web framework for building APIs with Python 3.7+
+#          based on standard Python type hints.
+fastapi
+
+# Uvicorn: An ASGI (Asynchronous Server Gateway Interface) server,
+#          used to run FastAPI applications. It's a lightning-fast ASGI server.
+uvicorn
+
+# SQLAlchemy: A Python SQL toolkit and Object Relational Mapper (ORM)
+#             that gives developers the full power and flexibility of SQL.
+#             It helps map Python objects to database tables and vice-versa.
+SQLAlchemy
+
+# Pydantic: A data validation and settings management library using Python type hints.
+#           It's used here to define the structure and validation rules for API request
+#           and response models (schemas).
+pydantic
+
+# FastAPI-Prometheus: An extension for FastAPI to expose Prometheus metrics,
+#                     useful for monitoring the application's performance and health.
+fastapi-prometheus
+
+# Prometheus Client: The official Python client for Prometheus,
+#                    used by fastapi-prometheus to generate and expose metrics.
+prometheus_client
+
+# Passlib[bcrypt]: A comprehensive password hashing library for Python.
+#                 '[bcrypt]' specifies that the bcrypt hashing algorithm is included.
+passlib[bcrypt]
+
+# Python-Jose[cryptography]: A JOSE (JSON Object Signing and Encryption) implementation in Python.
+#                           It's used for handling JWT (JSON Web Tokens) in this application.
+#                           '[cryptography]' indicates that the cryptography backend is used for secure operations.
+python-jose[cryptography]
+
+# Python-Multipart: A library for parsing multipart/form-data requests,
+#                   which are typically used for file uploads in web applications.
+python-multipart
+
+# Scikit-learn: A free software machine learning library for the Python programming language.
+#               It features various classification, regression and clustering algorithms.
+#               Used here for predictive analysis (e.g., Linear Regression for growth).
+scikit-learn
+
+# Pandas: A powerful and flexible open-source data analysis and manipulation tool,
+#         built on top of the Python programming language.
+#         Used here for data processing and preparation before machine learning tasks.
+pandas

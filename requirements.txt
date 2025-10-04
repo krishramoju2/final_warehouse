@@ -1,7 +1,7 @@
 # --- Core Framework ---
 fastapi==0.115.2
 uvicorn[standard]==0.23.2
-
+prometheus-fastapi-instrumentator
 # --- Database & ORM ---
 SQLAlchemy==2.0.23
 

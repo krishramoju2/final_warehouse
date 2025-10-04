@@ -1,4 +1,4 @@
-/* # Import necessary modules from FastAPI for building the API.
+# Import necessary modules from FastAPI for building the API.
 from fastapi import FastAPI, Depends, HTTPException, status, BackgroundTasks, Response
 # Import security components for OAuth2 authentication.
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
@@ -969,7 +969,7 @@ async def get_business_impact(db: Session = Depends(get_db)):
         potential_revenue_impact=potential_revenue_impact,
         operational_efficiency_impact=operational_efficiency_impact,
         strategic_recommendations=strategic_recommendations
-    ) */ 
+    )
 
 
 Got it\! You want to continue with the in-depth, line-by-line explanation of the backend code, and then we'll address the frontend. You also indicated a desire to "redone complete code with limited easy access modules instead of the many current."
@@ -984,7 +984,6 @@ Let's go through `main.py` line by line.
 
 ## 5\. `main.py` - Line-by-Line Explanation
 
-```python
 # main.py
 
 # Import necessary modules from FastAPI for building the API.

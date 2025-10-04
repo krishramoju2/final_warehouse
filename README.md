@@ -183,3 +183,70 @@ Historical storage of documents.
 Contains all document fields (document_type, file_path, upload_date, etc.) + archival details.
 
 Keeps track of whether it was linked to an employee or trucker before archiving.
+
+main.py
+
+This FastAPI backend (main.py) implements a secure warehouse and trucker management API. It features user authentication (JWT/OAuth2), employee and trucker CRUD, document management, compliance analytics, and export tools.
+
+Key Features & Code Snippets:
+
+Authentication & Security:
+
+JWT token creation and verification using create_access_token() and get_current_user() (see code)
+Password hashing: get_password_hash(), verify_password()
+Role-based access: get_current_active_user(), get_current_admin_user()
+User & Admin Management:
+
+User login endpoint:
+Python
+@app.post("/token", ...)
+Admin-only user creation:
+Python
+@app.post("/users/", ...)
+Employee & Trucker CRUD:
+
+Register, read, update, and archive employees/truckers:
+Register employee:
+Python
+@app.post("/employees/", ...)
+Soft delete example:
+Python
+@app.delete("/employees/{employee_id}", ...)
+Document Handling:
+
+Upload, verify, and archive compliance documents:
+Python
+@app.post("/documents/", ...)
+@app.put("/documents/{document_id}", ...)
+@app.delete("/documents/{document_id}", ...)
+Analytics & Live Search:
+
+Live search endpoint (multi-field, partial match):
+Python
+@app.get("/search/", ...)
+Compliance and growth analytics:
+Python
+@app.get("/dashboard/compliance", ...)
+@app.get("/analytics/employee-growth", ...)
+Data Export & Archiving:
+
+Export all records as CSV or ZIP:
+Python
+@app.get("/export/csv", ...)
+@app.get("/export/zip", ...)
+Manual archiving endpoint:
+Python
+@app.post("/archive/manual_trigger", ...)
+Prometheus Monitoring:
+
+Metrics middleware and endpoint:
+Python
+metrics.init_app(app)
+app.add_middleware(FastAPIMetrics)
+Frontend Integration:
+
+Static files served for frontend:
+Python
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
+In summary:
+Your main.py is a modular, secure backend for managing logistics personnel, documents, and compliance, with clear API endpoints for all CRUD, export, and analytics operations. Each major function is encapsulated as a route or utility, with security and data integrity baked in.

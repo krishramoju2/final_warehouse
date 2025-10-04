@@ -14,7 +14,9 @@ import numpy as np
 
 from database import get_db, Base, engine
 import models, schemas
-from fastapi_prometheus import metrics, FastAPIMetrics
+
+# Prometheus Instrumentation
+from prometheus_fastapi_instrumentator import Instrumentator
 
 # Create tables
 Base.metadata.create_all(bind=engine)
@@ -75,8 +77,11 @@ app = FastAPI(
     version="1.1.0"
 )
 
-metrics.init_app(app)
-app.add_middleware(FastAPIMetrics)
+# -------------------- PROMETHEUS METRICS --------------------
+metrics = Instrumentator()
+metrics.instrument(app).expose(app)
+
+# Mount static frontend
 app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
 # -------------------- AUTH ROUTES --------------------

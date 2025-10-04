@@ -8,161 +8,125 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <style>
-  body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    background-size: 400% 400%;
-    animation: gradientBG 30s ease infinite;
-    overflow-x: hidden;
-  }
-  @keyframes gradientBG {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
-  }
-  #particles-js {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: -1;
-  }
-  .neon {
-    text-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7, 0 0 30px #00ffe7, 0 0 40px #00ffe7;
-  }
-  .shape {
-    position: fixed;
-    border-radius: 50%;
-    opacity: 0.6;
-    mix-blend-mode: screen;
-    animation: floatAnim 20s linear infinite;
-  }
-  @keyframes floatAnim {
-    0% {transform: translateY(0) translateX(0);}
-    50% {transform: translateY(-20px) translateX(20px);}
-    100% {transform: translateY(0) translateX(0);}
-  }
+  body { margin:0; font-family:'Inter', sans-serif; background:linear-gradient(135deg,#0f2027,#203a43,#2c5364); background-size:400% 400%; animation:gradientBG 30s ease infinite; overflow-x:hidden;}
+  @keyframes gradientBG {0% {background-position:0% 50%;}50% {background-position:100% 50%;}100% {background-position:0% 50%;}}
+  #particles-js {position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
+  .neon {text-shadow:0 0 10px #00ffe7,0 0 20px #00ffe7,0 0 30px #00ffe7,0 0 40px #00ffe7;}
+  .shape {position:fixed;border-radius:50%;opacity:0.6;mix-blend-mode:screen;animation:floatAnim 20s linear infinite;}
+  @keyframes floatAnim {0% {transform: translateY(0) translateX(0);}50% {transform: translateY(-20px) translateX(20px);}100% {transform: translateY(0) translateX(0);}}
 </style>
 </head>
 <body>
 
 <div id="particles-js"></div>
-
-<div class="shape bg-pink-500 w-16 h-16 top-10 left-10"></div>
-<div class="shape bg-purple-600 w-24 h-24 top-40 right-20"></div>
-<div class="shape bg-green-400 w-12 h-12 bottom-40 left-16"></div>
-<div class="shape bg-yellow-400 w-20 h-20 bottom-20 right-20"></div>
+<div class="shape bg-pink-500 w-16 h-16 top-10 left-10" style="animation-delay:0s;"></div>
+<div class="shape bg-purple-600 w-24 h-24 top-40 right-20" style="animation-delay:2s;"></div>
+<div class="shape bg-green-400 w-12 h-12 bottom-40 left-16" style="animation-delay:4s;"></div>
+<div class="shape bg-yellow-400 w-20 h-20 bottom-20 right-20" style="animation-delay:6s;"></div>
 
 <div class="max-w-6xl mx-auto px-4 space-y-20 py-20">
-
   <section class="text-center animate__animated animate__fadeInDown">
     <h1 class="text-6xl md:text-7xl font-extrabold uppercase tracking-widest neon mb-4">🚛 The Cinematic Trucker Journey</h1>
     <p class="text-xl md:text-2xl italic neon mb-20">Scroll, Enter, and Witness the Visual Magic</p>
   </section>
 
-  <!-- Form -->
-  <section class="bg-gradient-to-tr from-purple-900 via-indigo-900 to-blue-900 rounded-4xl p-10 shadow-2xl border-4 border-white/50 animate__animated animate__zoomIn">
-    <h2 class="text-4xl font-bold mb-12 neon text-center">🎬 Enter Your Truck Info</h2>
+  <section class="bg-gradient-to-tr from-purple-900 via-indigo-900 to-blue-900 bg-opacity-70 backdrop-blur-xl rounded-4xl p-10 shadow-2xl border-4 border-white/50 transform hover:scale-105 transition-transform duration-700 animate__animated animate__zoomIn">
+    <h2 class="text-4xl md:text-5xl font-bold mb-8 neon mb-12 text-center">🎬 Enter Your Truck Info</h2>
     <form id="truckerForm" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-      <input type="text" id="firstName" placeholder="First Name" required class="px-4 py-3 rounded-3xl bg-white/10 border-2"/>
-      <input type="text" id="lastName" placeholder="Last Name" required class="px-4 py-3 rounded-3xl bg-white/10 border-2"/>
-      <input type="email" id="email" placeholder="Email" required class="px-4 py-3 rounded-3xl bg-white/10 border-2"/>
-      <input type="tel" id="phone" placeholder="Phone" required class="px-4 py-3 rounded-3xl bg-white/10 border-2"/>
-      <input type="text" id="license" placeholder="License #" required class="px-4 py-3 rounded-3xl bg-white/10 border-2"/>
-      <input type="text" id="truckId" placeholder="Truck ID" required class="px-4 py-3 rounded-3xl bg-white/10 border-2"/>
-      <input type="text" id="company" placeholder="Company" class="px-4 py-3 rounded-3xl bg-white/10 border-2"/>
+      <input type="text" id="firstName" placeholder="First Name" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
+      <input type="text" id="lastName" placeholder="Last Name" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
+      <input type="email" id="email" placeholder="Email" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
+      <input type="tel" id="phone" placeholder="Phone" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
+      <input type="text" id="license" placeholder="License #" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
+      <input type="text" id="truckId" placeholder="Truck ID" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
+      <input type="text" id="company" placeholder="Company" class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
     </form>
     <div class="flex justify-center">
-      <button id="saveBtn" class="px-8 py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 font-bold text-xl uppercase rounded-3xl shadow-2xl neon">🚀 Save & Watch the Magic</button>
+      <button id="saveBtn" class="px-8 py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 font-bold text-xl uppercase rounded-3xl shadow-2xl neon mb-20 hover:scale-105 transition-transform duration-300">🚀 Save & Watch the Magic</button>
     </div>
   </section>
 
-  <section class="bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 rounded-4xl p-10 shadow-2xl border-4 border-white/50 animate__animated animate__fadeIn">
-    <h2 class="text-4xl font-extrabold mb-12 neon text-center uppercase tracking-widest">📝 Registered Truckers</h2>
+  <div class="h-20"></div>
+
+  <section class="bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 bg-opacity-70 backdrop-blur-3xl rounded-4xl p-10 shadow-2xl border-4 border-white/50 animate__animated animate__fadeIn">
+    <h2 class="text-4xl md:text-5xl font-extrabold mb-8 neon mb-12 text-center uppercase tracking-widest">📝 Registered Truckers</h2>
     <div id="truckersList" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
   </section>
-
-  <section class="text-center animate__animated animate__fadeInUp mt-20 mb-20">
-    <h2 class="text-5xl font-extrabold neon mb-4">🎬 The Visual End... Or a New Beginning</h2>
-    <p class="text-xl italic neon mb-20">Keep scrolling, exploring the cinematic universe of trucking!</p>
-  </section>
-
 </div>
 
 <script>
-  // particles background
   particlesJS('particles-js', {
-    particles: { number: { value: 80 }, color: { value: '#fff' }, shape: { type: 'circle' },
-      opacity: { value: 0.3, random: true }, size: { value: 4, random: true },
-      move: { enable: true, speed: 2 }
-    },
-    interactivity: { events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } } },
-    retina_detect: true
+    particles: {number:{value:80,density:{enable:true,value_area:800}},color:{value:'#ffffff'},shape:{type:'circle'},opacity:{value:0.3,random:true},size:{value:4,random:true},move:{enable:true,speed:2,direction:'none',random:true,straight:false}},
+    interactivity:{detect_on:'canvas',events:{onhover:{enable:true,mode:'repulse'},onclick:{enable:true,mode:'push'}},modes:{repulse:{distance:100,duration:0.4},push:{particles_nb:4}}},
+    retina_detect:true
   });
 
-  const API_URL = "http://127.0.0.1:8000/truckers/";
+  const API_URL = "http://127.0.0.1:8000/truckers/"; // Replace with Codespace forwarded URL if needed
 
-  // Save trucker
-  document.getElementById('saveBtn').addEventListener('click', async () => {
+  async function fetchTruckers() {
+    try {
+      const res = await fetch(API_URL);
+      if (!res.ok) throw new Error('Failed to fetch truckers');
+      const data = await res.json();
+      renderTruckers(data);
+    } catch (err) {
+      console.error("Error loading truckers:", err);
+    }
+  }
+
+  async function addTrucker(trucker) {
+    try {
+      const res = await fetch(API_URL, {
+        method: "POST",
+        headers: {"Content-Type":"application/json"},
+        body: JSON.stringify(trucker)
+      });
+      if (!res.ok) throw new Error('Failed to add trucker');
+      await fetchTruckers(); // refresh list
+    } catch (err) {
+      console.error("Error adding trucker:", err);
+    }
+  }
+
+  document.getElementById('saveBtn').addEventListener('click', () => {
     const newTrucker = {
       first_name: document.getElementById('firstName').value.trim(),
       last_name: document.getElementById('lastName').value.trim(),
       email: document.getElementById('email').value.trim(),
-      phone: document.getElementById('phone').value.trim(),
-      license: document.getElementById('license').value.trim(),
-      truck_id: document.getElementById('truckId').value.trim(),
-      company: document.getElementById('company').value.trim() || 'Independent'
+      phone_number: document.getElementById('phone').value.trim(),
+      driver_license_number: document.getElementById('license').value.trim(),
+      truck_id_number: document.getElementById('truckId').value.trim(),
+      company_name: document.getElementById('company').value.trim() || "Independent"
     };
-
-    try {
-      const res = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newTrucker)
-      });
-      if (!res.ok) throw new Error("Failed to save");
-      document.getElementById('truckerForm').reset();
-      loadTruckers();
-    } catch (err) {
-      alert("Error: " + err.message);
-    }
+    addTrucker(newTrucker);
+    document.getElementById('truckerForm').reset();
   });
 
-  // Load truckers
-  async function loadTruckers() {
+  function renderTruckers(truckers) {
     const container = document.getElementById('truckersList');
-    container.innerHTML = '<p class="w-full text-center text-white">Loading...</p>';
-    try {
-      const res = await fetch(API_URL);
-      const trucks = await res.json();
-      container.innerHTML = '';
-      if (trucks.length === 0) {
-        container.innerHTML = '<p class="w-full text-center text-white text-2xl font-semibold">No truckers registered yet 🚚</p>';
-        return;
-      }
-      trucks.reverse().forEach(t => {
-        container.innerHTML += `
-          <div class="bg-white/10 border-4 border-white/50 rounded-3xl p-6 shadow-lg hover:scale-105 transition-all animate__animated animate__zoomIn">
-            <h3 class="text-3xl font-bold mb-4 neon">${t.first_name} ${t.last_name}</h3>
-            <div class="space-y-2 text-lg">
-              <p><strong>Email:</strong> ${t.email}</p>
-              <p><strong>Phone:</strong> ${t.phone}</p>
-              <p><strong>License:</strong> ${t.license}</p>
-              <p><strong>Truck ID:</strong> ${t.truck_id}</p>
-              <p><strong>Company:</strong> ${t.company}</p>
-            </div>
-          </div>
-        `;
-      });
-    } catch (err) {
-      container.innerHTML = '<p class="text-red-400">Error loading truckers: ' + err.message + '</p>';
+    container.innerHTML = '';
+    if (!truckers || truckers.length === 0) {
+      container.innerHTML = '<p class="w-full text-center text-white text-2xl font-semibold my-4 animate__animated animate__pulse">No truckers registered yet! 🚚</p>';
+      return;
     }
+    truckers.slice().reverse().forEach(t => {
+      container.innerHTML += `
+        <div class="bg-white/10 border-4 border-white/50 rounded-3xl p-6 shadow-lg hover:scale-105 hover:shadow-xl transition-all animate__animated animate__zoomIn">
+          <h3 class="text-3xl font-bold mb-4 neon">${t.first_name} ${t.last_name}</h3>
+          <div class="space-y-2 text-lg">
+            <p><strong>Email:</strong> ${t.email}</p>
+            <p><strong>Phone:</strong> ${t.phone_number}</p>
+            <p><strong>License:</strong> ${t.driver_license_number}</p>
+            <p><strong>Truck ID:</strong> ${t.truck_id_number}</p>
+            <p><strong>Company:</strong> ${t.company_name}</p>
+          </div>
+        </div>
+      `;
+    });
   }
 
-  window.onload = loadTruckers;
+  window.onload = fetchTruckers;
 </script>
-</body>
-</html>
 
 </body>
 </html>

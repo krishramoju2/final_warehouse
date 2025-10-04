@@ -95,3 +95,91 @@ EmployeeGrowthAnalysis → shows monthly employee growth, totals, and projection
 TruckerAnalysis → shows trucker distribution by province/company, and predictive trends.
 
 BusinessImpactAnalysis → high-level metrics like churn rate, compliance rate, revenue/efficiency impacts, and recommendations.
+
+
+
+models.py 
+
+1. User Model (users table)
+
+Stores login and identity info.
+
+Fields: username, hashed_password, email, full_name, is_active, is_admin, created_at.
+
+No relationship defined here (users don’t link to documents/employees directly).
+
+Example: Used for authentication, role-based access.
+
+2. Employee Model (employees table)
+
+Represents company employees.
+
+Fields: first_name, last_name, email, phone_number, position, is_active, registration_date.
+
+Relationships:
+
+documents = relationship("Document", back_populates="employee", cascade="all, delete-orphan")
+
+Means: One employee can have multiple documents. If the employee is deleted, their documents are deleted too.
+
+3. Trucker Model (truckers table)
+
+Represents truck drivers in the system.
+
+Fields: first_name, last_name, email, phone_number, driver_license_number, province_of_issue, truck_id_number, company_name, is_active, registration_date.
+
+Relationships:
+
+documents = relationship("Document", back_populates="trucker", cascade="all, delete-orphan")
+
+Same as employees — each trucker can have many documents.
+
+4. Document Model (documents table)
+
+Stores documents linked to either an employee or a trucker.
+
+Fields: document_type, file_path, upload_date, is_verified, verification_date, verified_by.
+
+Foreign Keys:
+
+employee_id → links to employees.id.
+
+trucker_id → links to truckers.id.
+
+Relationships:
+
+employee = relationship("Employee", back_populates="documents")
+
+trucker = relationship("Trucker", back_populates="documents").
+
+👉 Key point: A document belongs to either an employee or a trucker (but not both).
+
+5. ArchivedEmployee Model (archived_employees table)
+
+Stores historical copies of employees after they’re deactivated/deleted.
+
+Contains almost the same fields as Employee, but with:
+
+original_id → reference to the original employee’s ID.
+
+archive_date → when the record was archived.
+
+archived_reason → why it was archived.
+
+Ensures no data is lost after deletion — just moved to archive.
+
+6. ArchivedTrucker Model (archived_truckers table)
+
+Same concept as ArchivedEmployee, but for truckers.
+
+Keeps driver license, province, truck ID, etc., for audit history.
+
+Also has archive_date + archived_reason.
+
+7. ArchivedDocument Model (archived_documents table)
+
+Historical storage of documents.
+
+Contains all document fields (document_type, file_path, upload_date, etc.) + archival details.
+
+Keeps track of whether it was linked to an employee or trucker before archiving.

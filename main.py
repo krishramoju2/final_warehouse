@@ -969,20 +969,12 @@ async def get_business_impact(db: Session = Depends(get_db)):
         potential_revenue_impact=potential_revenue_impact,
         operational_efficiency_impact=operational_efficiency_impact,
         strategic_recommendations=strategic_recommendations
-    )
+    ) 
 
 
-Got it\! You want to continue with the in-depth, line-by-line explanation of the backend code, and then we'll address the frontend. You also indicated a desire to "redone complete code with limited easy access modules instead of the many current."
-
-This last point is a bit contradictory to the current task of *explaining* the existing code. If you want to *refactor* the code to use "limited easy access modules," that would be a separate, more extensive task after the explanations are done, or a new version of the code would need to be provided for explanation.
-
-For now, I will proceed with **adding line-by-line comments to your *existing* `main.py` code**, as per your explicit request. After this, we can discuss refactoring if that's still a priority, or move directly to the frontend.
-
-Let's go through `main.py` line by line.
-
------
 
 ## 5\. `main.py` - Line-by-Line Explanation
+
 
 # main.py
 
@@ -1866,5 +1858,3 @@ async def read_root():
     # Redirects to the static index.html file.
     # This is common to serve single-page applications or a main entry point.
     return RedirectResponse(url="/static/index.html")
-
-```

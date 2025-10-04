@@ -1,48 +1,27 @@
-# FastAPI: A modern, fast (high-performance) web framework for building APIs with Python 3.7+
-#          based on standard Python type hints.
-fastapi
+# --- Core Framework ---
+fastapi==0.115.2
+uvicorn[standard]==0.23.2
 
-# Uvicorn: An ASGI (Asynchronous Server Gateway Interface) server,
-#          used to run FastAPI applications. It's a lightning-fast ASGI server.
-uvicorn
+# --- Database & ORM ---
+SQLAlchemy==2.0.23
 
-# SQLAlchemy: A Python SQL toolkit and Object Relational Mapper (ORM)
-#             that gives developers the full power and flexibility of SQL.
-#             It helps map Python objects to database tables and vice-versa.
-SQLAlchemy
+# --- Data Models & Validation ---
+pydantic==1.10.12
+email-validator==2.1.0.post1  # Required if you use EmailStr in Pydantic schemas
 
-# Pydantic: A data validation and settings management library using Python type hints.
-#           It's used here to define the structure and validation rules for API request
-#           and response models (schemas).
-pydantic
+# --- Authentication & Security ---
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+python-multipart==0.0.9
+python-dotenv==1.0.0  # For environment variable management
 
-# FastAPI-Prometheus: An extension for FastAPI to expose Prometheus metrics,
-#                     useful for monitoring the application's performance and health.
-fastapi-prometheus
+# --- Monitoring ---
+fastapi-prometheus==0.4.0
+prometheus_client==0.17.1
 
-# Prometheus Client: The official Python client for Prometheus,
-#                    used by fastapi-prometheus to generate and expose metrics.
-prometheus_client
+# --- Data Analysis & ML ---
+scikit-learn==1.3.2
+pandas==2.1.1
 
-# Passlib[bcrypt]: A comprehensive password hashing library for Python.
-#                 '[bcrypt]' specifies that the bcrypt hashing algorithm is included.
-passlib[bcrypt]
-
-# Python-Jose[cryptography]: A JOSE (JSON Object Signing and Encryption) implementation in Python.
-#                           It's used for handling JWT (JSON Web Tokens) in this application.
-#                           '[cryptography]' indicates that the cryptography backend is used for secure operations.
-python-jose[cryptography]
-
-# Python-Multipart: A library for parsing multipart/form-data requests,
-#                   which are typically used for file uploads in web applications.
-python-multipart
-
-# Scikit-learn: A free software machine learning library for the Python programming language.
-#               It features various classification, regression and clustering algorithms.
-#               Used here for predictive analysis (e.g., Linear Regression for growth).
-scikit-learn
-
-# Pandas: A powerful and flexible open-source data analysis and manipulation tool,
-#         built on top of the Python programming language.
-#         Used here for data processing and preparation before machine learning tasks.
-pandas
+# --- Optional (recommended for production stability) ---
+alembic==1.13.1  # Database migrations (if needed in the future)

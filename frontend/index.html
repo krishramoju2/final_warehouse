@@ -85,13 +85,22 @@
       const res = await fetch(API_URL);
       if (!res.ok) throw new Error('Failed to fetch truckers');
       const data = await res.json();
+      // Sync localStorage with backend data
+      localStorage.setItem('truckers', JSON.stringify(data));
       renderTruckers(data);
     } catch (err) {
-      console.error("Error loading truckers:", err);
+      console.error("Error loading truckers from backend, using localStorage fallback:", err);
+      // Fallback: load from localStorage
+      const localTruckers = JSON.parse(localStorage.getItem('truckers') || '[]');
+      renderTruckers(localTruckers);
     }
   }
 
   async function addTrucker(trucker) {
+    // Always store in localStorage first
+    let localTruckers = JSON.parse(localStorage.getItem('truckers') || '[]');
+    localTruckers.push(trucker);
+    localStorage.setItem('truckers', JSON.stringify(localTruckers));
     try {
       const res = await fetch(API_URL, {
         method: "POST",
@@ -99,9 +108,12 @@
         body: JSON.stringify(trucker)
       });
       if (!res.ok) throw new Error('Failed to add trucker');
+      // On success, refresh from backend (which will also sync localStorage)
       await fetchTruckers();
     } catch (err) {
-      console.error("Error adding trucker:", err);
+      console.error("Error adding trucker to backend, kept in localStorage:", err);
+      // Fallback: just render from localStorage
+      renderTruckers(localTruckers);
     }
   }
 
@@ -134,7 +146,7 @@
           <div class="space-y-2 text-lg">
             <p><strong>Email:</strong> ${t.email}</p>
             <p><strong>Phone:</strong> ${t.phone_number}</p>
-            <p><strong>License:</strong> ${t.license_number}</p>
+            <p><strong>License:</strong> ${t.driver_license_number || t.license_number || ''}</p>
             <p><strong>Truck ID:</strong> ${t.truck_id_number}</p>
             <p><strong>Company:</strong> ${t.company_name}</p>
           </div>

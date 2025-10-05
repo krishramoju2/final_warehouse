@@ -1,166 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>🚛 Trucker Cinematic Journey</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<style>
-  body { margin:0; font-family:'Inter', sans-serif; background:linear-gradient(135deg,#0f2027,#203a43,#2c5364); background-size:400% 400%; animation:gradientBG 30s ease infinite; overflow-x:hidden;}
-  @keyframes gradientBG {0% {background-position:0% 50%;}50% {background-position:100% 50%;}100% {background-position:0% 50%;}}
-  #particles-js {position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
-  .neon {text-shadow:0 0 10px #00ffe7,0 0 20px #00ffe7,0 0 30px #00ffe7,0 0 40px #00ffe7;}
-  .shape {position:fixed;border-radius:50%;opacity:0.6;mix-blend-mode:screen;animation:floatAnim 20s linear infinite;}
-  @keyframes floatAnim {0% {transform: translateY(0) translateX(0);}50% {transform: translateY(-20px) translateX(20px);}100% {transform: translateY(0) translateX(0);}}
-</style>
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🚛 Trucker Cinematic Journey</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      background-size: 400% 400%;
+      animation: gradientBG 30s ease infinite;
+      overflow-x: hidden;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    #particles-js {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+    }
+    .neon {
+      text-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7, 0 0 30px #00ffe7, 0 0 40px #00ffe7;
+    }
+    .shape {
+      position: fixed;
+      border-radius: 50%;
+      opacity: 0.6;
+      mix-blend-mode: screen;
+      animation: floatAnim 20s linear infinite;
+    }
+    @keyframes floatAnim {
+      0% {transform: translateY(0) translateX(0);}
+      50% {transform: translateY(-20px) translateX(20px);}
+      100% {transform: translateY(0) translateX(0);}
+    }
+  </style>
 </head>
+
 <body>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <div id="particles-js"></div>
 
-<div id="particles-js"></div>
-<div class="shape bg-pink-500 w-16 h-16 top-10 left-10" style="animation-delay:0s;"></div>
-<div class="shape bg-purple-600 w-24 h-24 top-40 right-20" style="animation-delay:2s;"></div>
-<div class="shape bg-green-400 w-12 h-12 bottom-40 left-16" style="animation-delay:4s;"></div>
-<div class="shape bg-yellow-400 w-20 h-20 bottom-20 right-20" style="animation-delay:6s;"></div>
+  <!-- Top Auth Buttons -->
+  <div class="flex justify-end items-center gap-4 p-4">
+    <button id="showRegisterBtn" class="px-4 py-2 bg-green-600 text-white rounded shadow hover:bg-green-700">Register</button>
+    <button id="showLoginBtn" class="px-4 py-2 bg-blue-600 text-white rounded shadow hover:bg-blue-700">Login</button>
+  </div>
 
-<div class="max-w-6xl mx-auto px-4 space-y-20 py-20">
-  <section class="text-center animate__animated animate__fadeInDown">
-    <h1 class="text-6xl md:text-7xl font-extrabold uppercase tracking-widest neon mb-4">🚛 The Cinematic Trucker Journey</h1>
-    <p class="text-xl md:text-2xl italic neon mb-20">Scroll, Enter, and Witness the Visual Magic</p>
-  </section>
+  <!-- Logout Button -->
+  <div id="logoutBar" class="flex justify-end items-center gap-4 p-4 hidden">
+    <button id="logoutBtn" class="px-4 py-2 bg-gray-600 text-white rounded shadow hover:bg-gray-800">Logout</button>
+  </div>
 
-  <section class="bg-gradient-to-tr from-purple-900 via-indigo-900 to-blue-900 bg-opacity-70 backdrop-blur-xl rounded-4xl p-10 shadow-2xl border-4 border-white/50 transform hover:scale-105 transition-transform duration-700 animate__animated animate__zoomIn">
-    <h2 class="text-4xl md:text-5xl font-bold mb-8 neon mb-12 text-center">🎬 Enter Your Truck Info</h2>
-    <form id="truckerForm" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-      <input type="text" id="firstName" placeholder="First Name" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
-      <input type="text" id="lastName" placeholder="Last Name" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
-      <input type="email" id="email" placeholder="Email" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
-      <input type="tel" id="phone" placeholder="Phone" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
-  <input type="text" id="driverLicense" placeholder="Driver License #" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
-  <input type="text" id="province" placeholder="Province of Issue (e.g. ON)" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
-  <input type="text" id="truckId" placeholder="Truck ID" class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
-  <input type="text" id="company" placeholder="Company" class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50 focus:outline-none focus:ring-4 focus:ring-white/70 transition-transform hover:scale-105 hover:shadow-lg" />
-    </form>
-    <div class="flex justify-center">
-      <button id="saveBtn" class="px-8 py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 font-bold text-xl uppercase rounded-3xl shadow-2xl neon mb-20 hover:scale-105 transition-transform duration-300">🚀 Save & Watch the Magic</button>
-    </div>
-  </section>
+  <!-- Main Content (Hidden Until Login) -->
+  <div id="mainContent" class="hidden">
 
-  <section class="bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 bg-opacity-70 backdrop-blur-3xl rounded-4xl p-10 shadow-2xl border-4 border-white/50 animate__animated animate__fadeIn">
-    <div class="flex flex-col items-center mb-6">
-      <h2 class="text-4xl md:text-5xl font-extrabold neon text-center uppercase tracking-widest">📝 Registered Truckers</h2>
-      <button id="refreshBtn" class="mt-4 px-6 py-2 bg-gradient-to-r from-green-400 via-blue-500 to-purple-600 text-white font-bold rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">🔄 Refresh List</button>
-    </div>
-    <div id="truckersList" class="grid grid-cols-1 md:grid-cols-2 gap-8"></div>
-    <div class="flex justify-center mt-6">
-      <button id="debugBtn" class="px-6 py-2 bg-gray-800 text-white rounded-xl shadow hover:bg-gray-600">🐞 Show Raw Truckers JSON</button>
-    </div>
-  // Debug button to show raw truckers JSON
-  document.getElementById('debugBtn').addEventListener('click', async () => {
-    try {
-      const res = await fetch(API_URL);
-      const data = await res.json();
-      alert(JSON.stringify(data, null, 2));
-    } catch (err) {
-      alert('Error fetching truckers: ' + err);
-    }
-  });
-  </section>
-</div>
+    <!-- Decorative shapes -->
+    <div class="shape bg-pink-500 w-16 h-16 top-10 left-10"></div>
+    <div class="shape bg-purple-600 w-24 h-24 top-40 right-20"></div>
+    <div class="shape bg-green-400 w-12 h-12 bottom-40 left-16"></div>
+    <div class="shape bg-yellow-400 w-20 h-20 bottom-20 right-20"></div>
 
-<script>
-  particlesJS('particles-js', {
-    particles: {number:{value:80,density:{enable:true,value_area:800}},color:{value:'#ffffff'},shape:{type:'circle'},opacity:{value:0.3,random:true},size:{value:4,random:true},move:{enable:true,speed:2,direction:'none',random:true,straight:false}},
-    interactivity:{detect_on:'canvas',events:{onhover:{enable:true,mode:'repulse'},onclick:{enable:true,mode:'push'}},modes:{repulse:{distance:100,duration:0.4},push:{particles_nb:4}}},
-    retina_detect:true
-  });
+    <div class="max-w-6xl mx-auto px-4 space-y-20 py-20">
+      <section class="text-center animate__animated animate__fadeInDown">
+        <h1 class="text-6xl md:text-7xl font-extrabold uppercase tracking-widest neon mb-4" data-aos="fade-down">🚛 The Cinematic Trucker Journey</h1>
+        <p class="text-xl md:text-2xl italic neon mb-20" data-aos="fade-up">Scroll, Enter, and Witness the Visual Magic</p>
+      </section>
 
-  // Use relative path if deployed with backend on same domain
-  // Use the backend-served static path for API calls
-  const API_URL = "https://glowing-goldfish-r4xw5r7p7pp7255jp-8000.app.github.dev/";
-
-  async function fetchTruckers() {
-    try {
-      const res = await fetch(API_URL);
-      if (!res.ok) throw new Error('Failed to fetch truckers');
-      const data = await res.json();
-      // Sync localStorage with backend data
-      localStorage.setItem('truckers', JSON.stringify(data));
-      renderTruckers(data);
-    } catch (err) {
-      console.error("Error loading truckers from backend, using localStorage fallback:", err);
-      // Fallback: load from localStorage
-      const localTruckers = JSON.parse(localStorage.getItem('truckers') || '[]');
-      renderTruckers(localTruckers);
-    }
-  }
-
-  async function addTrucker(trucker) {
-    // Always store in localStorage first
-    let localTruckers = JSON.parse(localStorage.getItem('truckers') || '[]');
-    localTruckers.push(trucker);
-    localStorage.setItem('truckers', JSON.stringify(localTruckers));
-    try {
-      const res = await fetch(API_URL, {
-        method: "POST",
-        headers: {"Content-Type":"application/json"},
-        body: JSON.stringify(trucker)
-      });
-      if (!res.ok) throw new Error('Failed to add trucker');
-      // On success, refresh from backend (which will also sync localStorage)
-      await fetchTruckers();
-    } catch (err) {
-      console.error("Error adding trucker to backend, kept in localStorage:", err);
-      // Fallback: just render from localStorage
-      renderTruckers(localTruckers);
-    }
-  }
-
-  document.getElementById('saveBtn').addEventListener('click', () => {
-    const newTrucker = {
-      first_name: document.getElementById('firstName').value.trim(),
-      last_name: document.getElementById('lastName').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      phone_number: document.getElementById('phone').value.trim(),
-      driver_license_number: document.getElementById('driverLicense').value.trim(),
-      province_of_issue: document.getElementById('province').value.trim(),
-      truck_id_number: document.getElementById('truckId').value.trim(),
-      company_name: document.getElementById('company').value.trim() || "Independent"
-    };
-    addTrucker(newTrucker);
-    document.getElementById('truckerForm').reset();
-  });
-
-  function renderTruckers(truckers) {
-    const container = document.getElementById('truckersList');
-    container.innerHTML = '';
-    if (!truckers || truckers.length === 0) {
-      container.innerHTML = '<p class="w-full text-center text-white text-2xl font-semibold my-4 animate__animated animate__pulse">No truckers registered yet! 🚚</p>';
-      return;
-    }
-    truckers.slice().reverse().forEach(t => {
-      container.innerHTML += `
-        <div class="bg-white/10 border-4 border-white/50 rounded-3xl p-6 shadow-lg hover:scale-105 hover:shadow-xl transition-all animate__animated animate__zoomIn">
-          <h3 class="text-3xl font-bold mb-4 neon">${t.first_name} ${t.last_name}</h3>
-          <div class="space-y-2 text-lg">
-            <p><strong>Email:</strong> ${t.email}</p>
-            <p><strong>Phone:</strong> ${t.phone_number}</p>
-            <p><strong>License:</strong> ${t.driver_license_number || t.license_number || ''}</p>
-            <p><strong>Truck ID:</strong> ${t.truck_id_number}</p>
-            <p><strong>Company:</strong> ${t.company_name}</p>
-          </div>
+      <section class="bg-gradient-to-tr from-purple-900 via-indigo-900 to-blue-900 bg-opacity-70 backdrop-blur-xl rounded-4xl p-10 shadow-2xl border-4 border-white/50 transform hover:scale-105 transition-transform duration-700 animate__animated animate__zoomIn">
+        <h2 class="text-4xl md:text-5xl font-bold mb-8 neon text-center" data-aos="zoom-in">🎬 Enter Your Truck Info</h2>
+        <form id="truckerForm" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <input type="text" id="firstName" placeholder="First Name" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50" />
+          <input type="text" id="lastName" placeholder="Last Name" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50" />
+          <input type="email" id="email" placeholder="Email" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50" />
+          <input type="tel" id="phone" placeholder="Phone" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50" />
+          <input type="text" id="driverLicense" placeholder="Driver License #" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50" />
+          <input type="text" id="province" placeholder="Province (e.g. ON)" required class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50" />
+          <input type="text" id="truckId" placeholder="Truck ID" class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50" />
+          <input type="text" id="company" placeholder="Company" class="px-4 py-3 rounded-3xl bg-white/10 border-2 border-white/50" />
+        </form>
+        <div class="flex justify-center">
+          <button id="saveBtn" class="px-8 py-4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-600 font-bold text-xl uppercase rounded-3xl shadow-2xl neon mb-20 hover:scale-105 transition-transform duration-300">🚀 Save & Watch the Magic</button>
         </div>
-      `;
+      </section>
+
+      <section class="bg-gradient-to-br from-purple-900 via-indigo-900 to-blue-900 bg-opacity-70 backdrop-blur-3xl rounded-4xl p-10 shadow-2xl border-4 border-white/50 animate__animated animate__fadeIn">
+        <div class="flex flex-col items-center mb-6" data-aos="fade-up">
+          <h2 class="text-3xl md:text-4xl font-semibold text-center text-gray-100 mb-2">Registered Truckers</h2>
+          <input id="filterInput" type="text" placeholder="Filter by name, email, or company..." class="mt-2 mb-2 px-3 py-2 rounded border border-gray-300 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400 w-full max-w-md text-base shadow-sm" />
+          <button id="refreshBtn" class="mt-2 px-4 py-2 bg-blue-600 text-white font-medium rounded shadow-sm hover:bg-blue-700 transition-colors">Refresh List</button>
+        </div>
+        <div id="truckersList" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+        <div class="flex justify-center mt-6" data-aos="fade-up">
+          <button id="debugBtn" class="px-4 py-2 bg-gray-200 text-gray-700 rounded shadow-sm hover:bg-gray-300">Show Raw Truckers JSON</button>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-xl p-8 w-full max-w-sm shadow-lg relative">
+      <button id="closeLoginModal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800">&times;</button>
+      <h2 class="text-2xl font-semibold mb-4 text-center">User Login</h2>
+      <form id="loginForm" class="space-y-4">
+        <input type="text" id="loginUsername" placeholder="Username" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-400" />
+        <input type="password" id="loginPassword" placeholder="Password" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-blue-400" />
+        <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Login</button>
+      </form>
+      <div id="loginError" class="text-red-600 text-center mt-2 hidden">Invalid username or password.</div>
+    </div>
+  </div>
+
+  <!-- Register Modal -->
+  <div id="registerModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-xl p-8 w-full max-w-md shadow-lg relative">
+      <button id="closeRegisterModal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-800">&times;</button>
+      <h2 class="text-2xl font-semibold mb-4 text-center">Register</h2>
+      <form id="registerForm" class="space-y-4">
+        <input type="text" id="regFirstName" placeholder="First Name" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-400" />
+        <input type="text" id="regLastName" placeholder="Last Name" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-400" />
+        <input type="email" id="regEmail" placeholder="Email" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-400" />
+        <input type="tel" id="regPhone" placeholder="Phone" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-400" />
+        <input type="text" id="regDriverLicense" placeholder="Driver License #" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-400" />
+        <input type="text" id="regProvince" placeholder="Province (e.g. ON)" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-400" />
+        <input type="text" id="regTruckId" placeholder="Truck ID" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-400" />
+        <input type="text" id="regCompany" placeholder="Company" class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-400" />
+        <input type="password" id="regPassword" placeholder="Password" required class="w-full px-3 py-2 border rounded focus:ring-2 focus:ring-green-400" />
+        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Register</button>
+      </form>
+      <div id="registerError" class="text-red-600 text-center mt-2 hidden">Registration error. Try again.</div>
+    </div>
+  </div>
+
+  <script>
+    const loginModal = document.getElementById('loginModal');
+    const registerModal = document.getElementById('registerModal');
+    const mainContent = document.getElementById('mainContent');
+    const logoutBar = document.getElementById('logoutBar');
+
+    function showMainContent() {
+      mainContent.classList.remove('hidden');
+      logoutBar.classList.remove('hidden');
+      document.getElementById('showRegisterBtn').classList.add('hidden');
+      document.getElementById('showLoginBtn').classList.add('hidden');
+    }
+
+    function hideMainContent() {
+      mainContent.classList.add('hidden');
+      logoutBar.classList.add('hidden');
+      document.getElementById('showRegisterBtn').classList.remove('hidden');
+      document.getElementById('showLoginBtn').classList.remove('hidden');
+    }
+
+    // Modal controls
+    document.getElementById('showLoginBtn').onclick = () => loginModal.classList.remove('hidden');
+    document.getElementById('showRegisterBtn').onclick = () => registerModal.classList.remove('hidden');
+    document.getElementById('closeLoginModal').onclick = () => loginModal.classList.add('hidden');
+    document.getElementById('closeRegisterModal').onclick = () => registerModal.classList.add('hidden');
+    window.onclick = (e) => {
+      if (e.target === loginModal) loginModal.classList.add('hidden');
+      if (e.target === registerModal) registerModal.classList.add('hidden');
+    };
+
+    // Login logic
+    document.getElementById('loginForm').onsubmit = (e) => {
+      e.preventDefault();
+      const username = document.getElementById('loginUsername').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const found = users.find(u => u.username === username && u.password === password);
+      if (found) {
+        loginModal.classList.add('hidden');
+        document.getElementById('loginError').classList.add('hidden');
+        localStorage.setItem('loggedIn', 'true');
+        showMainContent();
+        alert('Login successful!');
+      } else {
+        document.getElementById('loginError').classList.remove('hidden');
+      }
+    };
+
+    // Registration logic
+    document.getElementById('registerForm').onsubmit = (e) => {
+      e.preventDefault();
+      const firstName = document.getElementById('regFirstName').value.trim();
+      const lastName = document.getElementById('regLastName').value.trim();
+      const password = document.getElementById('regPassword').value;
+      const username = (firstName + lastName).toLowerCase();
+      let users = JSON.parse(localStorage.getItem('users') || '[]');
+      if (users.find(u => u.username === username)) {
+        document.getElementById('registerError').textContent = 'User already exists. Please login.';
+        document.getElementById('registerError').classList.remove('hidden');
+        return;
+      }
+      users.push({ username, password });
+      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem('loggedIn', 'true');
+      registerModal.classList.add('hidden');
+      showMainContent();
+      alert(`Registered successfully!\nUsername: ${username}`);
+      document.getElementById('registerForm').reset();
+    };
+
+    // Logout
+    document.getElementById('logoutBtn').onclick = () => {
+      localStorage.removeItem('loggedIn');
+      hideMainContent();
+    };
+
+    // Particles
+    particlesJS('particles-js', {
+      particles: {number:{value:80,density:{enable:true,value_area:800}},color:{value:'#ffffff'},shape:{type:'circle'},opacity:{value:0.3,random:true},size:{value:4,random:true},move:{enable:true,speed:2}},
+      interactivity:{events:{onhover:{enable:true,mode:'repulse'}}}
     });
-  }
 
-  window.onload = fetchTruckers;
-  // Manual refresh button
-  document.getElementById('refreshBtn').addEventListener('click', fetchTruckers);
-  // Auto-refresh every 10 seconds
-  setInterval(fetchTruckers, 10000);
-</script>
+    // Dummy truckers fetch logic (localStorage only)
+    function renderTruckers(truckers) {
+      const container = document.getElementById('truckersList');
+      if (!truckers || truckers.length === 0) {
+        container.innerHTML = '<p class="text-white text-2xl text-center">No truckers registered yet! 🚚</p>';
+        return;
+      }
+      container.innerHTML = truckers.map(t => `
+        <div class="bg-white border rounded-xl p-5 shadow-sm">
+          <h3 class="text-xl font-semibold">${t.first_name} ${t.last_name}</h3>
+          <p><b>Email:</b> ${t.email}</p>
+          <p><b>Phone:</b> ${t.phone_number}</p>
+          <p><b>Company:</b> ${t.company_name}</p>
+        </div>
+      `).join('');
+    }
 
+    document.getElementById('saveBtn').onclick = () => {
+      const t = {
+        first_name: document.getElementById('firstName').value,
+        last_name: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        phone_number: document.getElementById('phone').value,
+        driver_license_number: document.getElementById('driverLicense').value,
+        province_of_issue: document.getElementById('province').value,
+        truck_id_number: document.getElementById('truckId').value,
+        company_name: document.getElementById('company').value
+      };
+      let list = JSON.parse(localStorage.getItem('truckers') || '[]');
+      list.push(t);
+      localStorage.setItem('truckers', JSON.stringify(list));
+      renderTruckers(list);
+      document.getElementById('truckerForm').reset();
+    };
+
+    document.getElementById('debugBtn').onclick = () => {
+      alert(JSON.stringify(JSON.parse(localStorage.getItem('truckers') || '[]'), null, 2));
+    };
+
+    document.getElementById('refreshBtn').onclick = () => {
+      renderTruckers(JSON.parse(localStorage.getItem('truckers') || '[]'));
+    };
+
+    // On page load
+    window.onload = () => {
+      if (localStorage.getItem('loggedIn') === 'true') showMainContent();
+      renderTruckers(JSON.parse(localStorage.getItem('truckers') || '[]'));
+      if (window.AOS) AOS.init({ once: true });
+    };
+  </script>
 </body>
 </html>
